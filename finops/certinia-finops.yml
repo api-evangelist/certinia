@@ -1,0 +1,95 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Certinia
+providerId: certinia
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- ERP
+- PSA
+- Revenue Recognition
+- Billing
+- Salesforce
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Certinia spend. Certinia (formerly FinancialForce) is licensed as
+  a per-user, per-month subscription by module (ERP / Accounting, PSA, Revenue
+  Management, Billing Central, Supply Chain, Services CPQ) on an annual or
+  multi-year contract. Because Certinia runs as managed packages inside the
+  customer's Salesforce org, total cost of ownership has three layers: the Certinia
+  subscription, the underlying Salesforce Platform licensing the apps require, and
+  implementation / integration services. There is no separate per-call API charge -
+  Apex/SOAP API access is included with the licensed managed package - so API cost
+  management is really about license (seat) optimization and Salesforce Platform
+  consumption, not per-request metering.
+notes: >-
+  Per-unit rates are quote-based and not published by Certinia; the ranges in the
+  plans file are market-observed, not official. The dominant, recurring costs are
+  named-user subscriptions (Certinia + Salesforce) rather than usage metering.
+  Verify all figures directly with Certinia during reconciliation.
+sources:
+- https://www.certinia.com/
+- https://www.vendr.com/marketplace/certinia
+- https://www.erpresearch.com/pricing/financialforce
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Certinia
+serviceCategory: ERP and Professional Services Automation
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Certinia
+  ServiceCategory: ERP and Professional Services Automation
+  ProviderName: Certinia
+  PublisherName: Certinia
+  InvoiceIssuerName: Certinia
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription-Based
+meters:
+- name: named_users
+  description: Per-user, per-month subscription seats by Certinia module - the primary cost driver.
+  unit: users
+  aggregation: sum
+  dimensions:
+  - module
+  - org
+- name: salesforce_platform_licenses
+  description: Underlying Salesforce Platform licenses required to run the Certinia managed packages.
+  unit: users
+  aggregation: sum
+  dimensions:
+  - org
+- name: implementation_services
+  description: One-time and ongoing implementation, configuration, and integration services.
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - project
+principles:
+- name: Visibility
+  description: Track Certinia seat counts per module alongside the Salesforce Platform licenses they depend on; API access carries no separate meter.
+- name: Allocation
+  description: Map named-user seats (PSA, ERP, Revenue, Billing) to teams and cost centers; allocate Salesforce Platform fees that Certinia consumes.
+- name: Optimization
+  description: Right-size named-user counts, consolidate modules, and negotiate multi-year volume discounts; reduce Salesforce API/governor pressure by bulkifying integrations rather than paying per call.
+- name: Accountability
+  description: Assign module owners; review seat utilization and contract renewals annually against actual usage.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

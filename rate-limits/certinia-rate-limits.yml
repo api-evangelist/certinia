@@ -1,0 +1,76 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Certinia
+providerId: certinia
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- ERP
+- PSA
+- Revenue Recognition
+- Salesforce
+- Rate Limiting
+- Governor Limits
+description: >-
+  Certinia does not publish its own numeric API rate limits. Because Certinia's
+  APIs are global Apex service classes (and legacy SOAP APIs) that execute inside
+  a customer's Salesforce org, the effective limits are the Salesforce Platform's
+  governor limits and API request allocations, not Certinia-imposed quotas. Apex
+  execution is bounded per transaction by Salesforce governor limits (for example
+  SOQL query counts, DML statements and rows, CPU time, and heap size); external
+  SOAP / REST integration traffic is bounded by the org's daily API request limit,
+  which Salesforce allocates by edition and licensed user count. Certinia's own
+  synchronous-vs-asynchronous behavior for large operations (such as revenue
+  contract creation) is controlled by managed-package custom settings rather than a
+  request-rate cap.
+notes: >-
+  Numeric limits below are illustrative of the Salesforce Platform constraints
+  Certinia inherits, not Certinia-published figures; exact allocations depend on
+  the customer's Salesforce edition, licenses, and add-ons. Verify current
+  Salesforce governor and API limits in Salesforce documentation, and tune
+  Certinia batch behavior via managed-package custom settings (e.g. the Revenue
+  Management "Manage RC Synchronous Limit" setting).
+sources:
+- https://help.certinia.com/TechnicalReference/2024.2/RevenueManagement/Apex/GenericAPI.htm
+- https://help.certinia.com/main/2024.1/Content/RevenueManagement/Features/RevenueContracts/CreateRevContractUsingAPI.htm
+- https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/
+responseCodes:
+  throttled: 429
+limits:
+- name: Salesforce Daily API Requests
+  scope: org
+  metric: requests
+  limit: platform-allocated (by edition and licensed users)
+  notes: External SOAP/REST calls into the org count against the Salesforce daily API request limit; not set by Certinia.
+- name: Apex CPU Time (per transaction)
+  scope: transaction
+  metric: milliseconds
+  limit: Salesforce governor limit
+  notes: Synchronous Apex is CPU-time bounded per transaction; large Certinia operations may run asynchronously to stay within limits.
+- name: SOQL Queries (per transaction)
+  scope: transaction
+  metric: queries
+  limit: Salesforce governor limit
+  notes: Governor-limited per Apex transaction; applies to Certinia service-class execution.
+- name: DML Statements / Rows (per transaction)
+  scope: transaction
+  metric: records
+  limit: Salesforce governor limit
+  notes: Governor-limited per Apex transaction.
+- name: Certinia Synchronous Batch Threshold
+  scope: operation
+  metric: records
+  limit: configurable via managed-package custom setting
+  notes: Operations above a configured record count (e.g. Manage RC Synchronous Limit) execute asynchronously instead of synchronously.
+policies:
+- name: Governor Limits
+  description: All Certinia Apex API execution is subject to Salesforce per-transaction governor limits; design integrations to bulkify and to run large jobs asynchronously.
+- name: Async Fallback
+  description: Certinia switches large operations (such as revenue contract creation) from synchronous to asynchronous processing based on record volume and custom-setting thresholds.
+- name: Backoff Strategy
+  description: External clients calling into the Salesforce org should implement exponential backoff with jitter and honor Retry-After / 429 responses from the Salesforce Platform.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

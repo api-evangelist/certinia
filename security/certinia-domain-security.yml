@@ -1,0 +1,35 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml hosts
+hosts:
+- host: certinia.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  2 10:44:29 2026 GMT
+  hsts: false
+- host: www.certinia.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  1 17:41:13 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+- host: help.certinia.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  5 09:30:32 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+domains:
+- domain: certinia.com
+  dnssec: false
+  caa: []
+  spf: true
+  spf_record: 'v=spf1 ip4:52.38.191.241 ip4:83.138.173.144 include:eu._netblocks.mimecast.com include:mktomail.com include:_spf.salesforce.com include:_spf.google.com include:em9009.seismic.com -all'
+  dmarc: true
+  dmarc_policy: reject
+  note: >-
+    SPF includes _spf.salesforce.com, consistent with Certinia's Salesforce-native
+    delivery model. The apex domain (certinia.com) did not return an HSTS header on
+    probe, while www and help subdomains do.

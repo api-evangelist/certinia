@@ -1,0 +1,42 @@
+generated: '2026-07-11'
+method: researched
+source: Certinia Apex API developer references + Salesforce Platform auth model
+summary:
+  types:
+  - oauth2
+  - session
+  note: >-
+    Certinia does not operate its own identity provider. Its Apex and legacy SOAP
+    APIs execute inside the customer's Salesforce org, so authentication and
+    authorization are provided entirely by the Salesforce Platform. External
+    integrations authenticate with Salesforce OAuth 2.0 (or a SOAP session ID);
+    in-org Apex-to-Apex calls run in the current user context. Access additionally
+    requires the relevant Certinia managed package to be installed and an
+    appropriate permission set or profile assigned to the running user.
+schemes:
+- name: salesforceOAuth2
+  type: oauth2
+  description: >-
+    Salesforce OAuth 2.0 (web server, JWT bearer, or client credentials flows)
+    issues an access token used as `Authorization: Bearer <token>` against the
+    customer's Salesforce org (my.salesforce.com domain). Required scopes and the
+    connected app are configured in the customer's org.
+  sources:
+  - https://help.certinia.com/TechnicalReference/2024.2/RevenueManagement/Apex/GenericAPI.htm
+- name: salesforceSession
+  type: apiKey
+  in: header
+  description: >-
+    Legacy SOAP integrations authenticate with a Salesforce session ID obtained
+    via login(), passed in the SOAP header, for standard SOAP environments
+    (e.g. .NET, Apache Axis).
+  sources:
+  - https://help.certinia.com/TechnicalReference/2024.2/ProfessionalServicesAutomation/Apex/GenericAPI.htm
+- name: permissionSet
+  type: authorization
+  description: >-
+    Beyond authentication, the running user must be granted the Certinia-provided
+    permission set or profile for the relevant managed package before its Apex
+    service classes can be invoked.
+  sources:
+  - https://help.certinia.com/TechnicalReference/2023.2/Accounting/Apex/GenericAPI.htm

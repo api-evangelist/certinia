@@ -1,0 +1,94 @@
+aid: certinia
+name: Certinia
+review:
+  question: Does Certinia expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-11'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Certinia (formerly FinancialForce) does not
+    ship a standalone HTTP API product, let alone a WebSocket transport. Certinia's
+    programmatic surface is a set of global Apex service classes and legacy SOAP
+    APIs that execute inside a customer's Salesforce org against Certinia
+    managed-package objects. Any realtime or streaming behavior a customer needs is
+    delivered by the underlying Salesforce Platform (for example Platform Events,
+    Change Data Capture, and the CometD-based Streaming API), not by a Certinia-owned
+    WebSocket endpoint. There is no Certinia server-push transport to model.
+findings:
+  summary: |
+    Certinia does not publish a documented public WebSocket API. Certinia is a
+    Salesforce-native ERP / PSA / revenue-management suite. Its documented
+    programmatic access is through global Apex service classes (invoked in Apex,
+    Apex-to-Apex, or exposed by the customer as Apex REST/SOAP) and legacy SOAP
+    APIs, all running inside a provisioned Salesforce org with the relevant Certinia
+    managed package installed. There is no Certinia-hosted public REST product and
+    no Certinia-hosted realtime, bidirectional, or streaming WebSocket (ws:// or
+    wss://) endpoint documented as of the review date.
+  accessModel: |
+    Gated. Using any Certinia API requires (1) a licensed Salesforce org, (2) the
+    relevant Certinia managed package (Revenue Management, Billing Central, PSA,
+    Accounting, SCM, Services CPQ) installed and configured, and (3) an assigned
+    permission set or profile. Authentication and transport are provided by the
+    Salesforce Platform (OAuth 2.0 / session-based), not by a separate Certinia
+    identity system. There is no self-serve public developer signup for a Certinia
+    HTTP API.
+  endpointsModeled: true
+  endpointsModeledNote: |
+    The API entries in apis.yml are modeled from Certinia's public Apex API
+    developer references. They describe global Apex service classes (e.g.
+    RevenueContractService, RevenueRecognitionService, RevenueScheduleAutomationService,
+    BillingService, BillingDocumentsService, PSA project/resource/timecard services,
+    the CODAAPI Accounting classes, and the FFAAPI Supply Chain classes). They are
+    NOT public, unauthenticated HTTP endpoints and were not verified against a live
+    public base URL - execution happens inside the customer's Salesforce org.
+  transports:
+    - protocol: Apex
+      scheme: platform
+      documented: true
+      note: Global Apex service classes invoked in Apex within the Salesforce org against Certinia managed-package objects. Primary documented surface.
+    - protocol: SOAP
+      scheme: https
+      documented: true
+      note: Legacy SOAP APIs supported for standard SOAP development environments (e.g. .NET, Apache Axis) via the Salesforce Platform.
+    - protocol: REST
+      scheme: https
+      documented: false
+      note: Certinia does not ship a first-party public REST product. Customers may surface individual Apex classes as Apex REST inside their own org, but there is no Certinia-hosted public REST base URL.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No Certinia-owned WebSocket endpoint is documented. Streaming, if needed, is provided by the underlying Salesforce Platform (Streaming API / Platform Events), not by Certinia.
+sources:
+  - url: https://help.certinia.com/TechnicalReference/2024.2/RevenueManagement/Apex/GenericAPI.htm
+    type: Documentation
+    note: Revenue Management Apex API - global service classes for ASC 606 / IFRS 15 revenue recognition. Apex/SOAP, gated by permission set.
+  - url: https://help.certinia.com/main/2024.1/Content/RevenueManagement/Features/RevenueContracts/CreateRevContractUsingAPI.htm
+    type: APIReference
+    note: RevenueContractService.create - custom Apex code creates revenue contracts, obligations, and recognition schedules.
+  - url: https://help.certinia.com/ffbc-api/3X/GenericAPI.htm
+    type: Documentation
+    note: Billing Central Apex API - BillingService, BillingDocumentsService, BillingSchedulesService, ContractsService.
+  - url: https://help.certinia.com/TechnicalReference/2024.2/ProfessionalServicesAutomation/Apex/GenericAPI.htm
+    type: Documentation
+    note: PSA Apex API - domain service classes for projects, resources, timecards; SOAP supported. Not generic REST CRUD.
+  - url: https://help.certinia.com/TechnicalReference/2023.2/Accounting/Apex/GenericAPI.htm
+    type: Documentation
+    note: Accounting Apex API - CODAAPI namespace for core financials.
+  - url: https://help.certinia.com/scmc-api/2022.3/FFAAPI.htm
+    type: Documentation
+    note: Supply Chain Management Apex API - FFAAPI classes.
+  - url: https://github.com/certinia
+    type: SourceCode
+    note: Certinia GitHub org (e.g. apex-mdapi, Apex wrapper for the Salesforce Metadata API). Confirms Salesforce/Apex-centric development model.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Certinia's own programmatic API is
+    Apex/SOAP running inside the customer's Salesforce org, and it is gated behind a
+    licensed org, an installed managed package, and permission-set assignment. No
+    AsyncAPI document was created because Certinia hosts no server-push transport to
+    model; any streaming is delegated to the Salesforce Platform. API entries were
+    documented honestly as endpointsModeled from the public Apex developer
+    references rather than fabricated against a public HTTP base URL.

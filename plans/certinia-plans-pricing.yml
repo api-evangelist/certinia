@@ -1,0 +1,148 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Certinia
+providerId: certinia
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- ERP
+- PSA
+- Revenue Recognition
+- Billing
+- Salesforce
+- Plans
+description: >-
+  Certinia (formerly FinancialForce) does not publish list pricing. It is sold as
+  a per-user, per-month subscription on an annual (or multi-year) contract, quoted
+  by product module - ERP / Accounting, Professional Services Automation (PSA),
+  Revenue Management, Billing Central, Supply Chain, and Services CPQ - and layered
+  on top of the customer's own Salesforce Platform licensing. There is no separate
+  metered fee for calling the Apex/SOAP APIs; API access is included with the
+  managed package a customer licenses. All figures below are market-observed
+  ranges from third-party sources and are NOT official Certinia list prices;
+  actual pricing is quote-based and negotiated.
+notes: >-
+  Certinia requires contacting sales for a quote. Reported mid-market ranges:
+  Certinia ERP roughly $150-$250 per user per month and full PSA roughly $120-$200
+  per user per month (50-100 users, 12-month term); total first-year cost for an
+  ERP+PSA deployment commonly $300k-$800k including Salesforce platform fees and
+  implementation. Verify all numbers directly with Certinia during reconciliation.
+sources:
+- https://www.certinia.com/
+- https://www.vendr.com/marketplace/certinia
+- https://www.erpresearch.com/pricing/financialforce
+- https://www.trustradius.com/products/certinia-ps-cloud/pricing
+plans:
+- id: certinia-psa
+  name: Professional Services Automation (PSA)
+  type: paid
+  description: >-
+    Per-user subscription for the PSA managed package - projects, resource
+    management, timecards, expenses, and services billing - including the PSA Apex
+    API. Market-observed mid-market range roughly $120-$200 per user per month.
+  entries:
+  - label: PSA Named User
+    name: psa_named_user
+    type: subscription
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: quote-based (market-observed ~$120-$200 per user/month)
+    userMultiplied: true
+  elements:
+  - name: PSA Managed Package
+  - name: PSA Apex / SOAP API
+  - name: Runs on Customer Salesforce Org
+- id: certinia-erp
+  name: ERP / Accounting
+  type: paid
+  description: >-
+    Per-user subscription for the Accounting / ERP managed package - core
+    financials, general ledger, billing, and the Accounting (CODAAPI) Apex API.
+    Market-observed mid-market range roughly $150-$250 per user per month.
+  entries:
+  - label: ERP Named User
+    name: erp_named_user
+    type: subscription
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: quote-based (market-observed ~$150-$250 per user/month)
+    userMultiplied: true
+  elements:
+  - name: Accounting / ERP Managed Package
+  - name: Accounting Apex / SOAP API
+  - name: Runs on Customer Salesforce Org
+- id: certinia-revenue-management
+  name: Revenue Management
+  type: paid
+  description: >-
+    Per-user or per-module subscription for the Revenue Management package -
+    ASC 606 / IFRS 15 revenue recognition, revenue contracts, schedules, and
+    forecasting, including the Revenue Management Apex API. Quote-based.
+  entries:
+  - label: Revenue Management Subscription
+    name: revenue_management_subscription
+    type: subscription
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales (quote-based)
+    userMultiplied: true
+  elements:
+  - name: Revenue Management Managed Package
+  - name: Revenue Management Apex API (ASC 606)
+- id: certinia-billing-central
+  name: Billing Central
+  type: paid
+  description: >-
+    Subscription for the Billing Central package - subscription and usage billing,
+    billing documents and schedules - including the Billing Central Apex API.
+    Quote-based.
+  entries:
+  - label: Billing Central Subscription
+    name: billing_central_subscription
+    type: subscription
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales (quote-based)
+    userMultiplied: true
+  elements:
+  - name: Billing Central Managed Package
+  - name: Billing Central Apex API
+- id: certinia-enterprise
+  name: Enterprise / Custom
+  type: enterprise
+  description: >-
+    Negotiated multi-module, multi-year enterprise agreement bundling ERP, PSA,
+    Revenue Management, Billing, SCM, and Services CPQ with volume discounts, SLAs,
+    and implementation. Layered on the customer's Salesforce Platform contract.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Multi-Module Bundle
+  - name: Volume and Multi-Year Discounts
+  - name: SLAs and Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
