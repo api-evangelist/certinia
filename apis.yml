@@ -15,7 +15,20 @@ description: Certinia (formerly FinancialForce) is a Salesforce-native ERP, Prof
   profile assigned. The endpoints documented here are modeled from Certinia's public
   Apex API developer references; they are not called against a public, unauthenticated
   HTTP base URL.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/certinia.png
 tags:
 - Revenue Recognition
 - ASC 606
