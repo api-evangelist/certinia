@@ -42,7 +42,7 @@ tags:
 - Finance
 created: '2026-07-11'
 modified: '2026-07-11'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: certinia:certinia-revenue-management-api
   name: Certinia Revenue Management API
