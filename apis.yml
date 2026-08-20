@@ -90,6 +90,12 @@ apis:
   tags:
   - Professional Services Automation
   - PSA
+  - Project
+  - Resource Management
+  - Timecards
+  tags_raw:
+  - Professional Services Automation
+  - PSA
   - Projects
   - Resource Management
   - Timecards
@@ -128,6 +134,11 @@ apis:
 - aid: certinia:certinia-scm-api
   name: Certinia Supply Chain Management (SCM) API
   tags:
+  - Supply Chain
+  - Inventory
+  - Order
+  - Procurement
+  tags_raw:
   - Supply Chain
   - Inventory
   - Orders
