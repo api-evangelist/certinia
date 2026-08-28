@@ -15,6 +15,17 @@ description: Certinia (formerly FinancialForce) is a Salesforce-native ERP, Prof
   profile assigned. The endpoints documented here are modeled from Certinia's public
   Apex API developer references; they are not called against a public, unauthenticated
   HTTP base URL.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
