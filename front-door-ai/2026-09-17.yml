@@ -1,0 +1,30 @@
+# Front Door AI Index — certinia — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: certinia
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.certinia.com
+  final_host: www.certinia.com
+  ownership: own
+  owner: certinia
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 32
+  host_score: 32
+  density: 15.47
+  words: 2068
+  tiers:
+    agentic: 10
+    core: 22
+    model: 0
+  ambiguous: 30
+  top_terms:
+    agent: 24
+    AI: 22
+    agentic: 10
+    intelligence: 4
+    automation: 1
+    predictive: 1
