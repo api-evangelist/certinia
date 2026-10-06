@@ -52,7 +52,7 @@ tags:
 - FinancialForce
 - Finance
 created: '2026-07-11'
-modified: '2026-07-11'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: certinia:certinia-revenue-management-api
@@ -179,6 +179,8 @@ apis:
     a Salesforce org against Services CPQ managed-package objects; endpoints modeled
     from the public developer reference.
 common:
+- url: https://www.certinia.com/blog/
+  type: Blog
 - type: DomainSecurity
   url: security/certinia-domain-security.yml
 - type: Authentication
