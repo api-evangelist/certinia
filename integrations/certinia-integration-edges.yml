@@ -2,6 +2,7 @@ generated: '2026-10-13'
 method: searched
 checked:
 - https://aws.amazon.com/marketplace/
+- https://marketplace.visualstudio.com/vscode
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -19,3 +20,23 @@ edges:
   seller_name: Certinia Inc.
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
+- partner_name: Visual Studio Code Marketplace
+  partner: vs-code-marketplace
+  partner_match: aggregator
+  type: marketplace
+  marketplace: vscode
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.visualstudio.com/publishers/financialforce
+  listing_count: 1
+  apps:
+  - Apex Log Analyzer
+  publisher_name: Certinia
+  badges:
+  - Verified publisher
+  - Verified domain
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+source:
+- https://marketplace.visualstudio.com/vscode
