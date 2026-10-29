@@ -1,4 +1,4 @@
-# Certinia (certinia)
+# Certinia
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,151 +64,110 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Certinia (formerly **FinancialForce**) is a Salesforce-native ERP, Professional Services Automation (PSA), and revenue-management suite delivered as managed packages that run inside a customer's Salesforce org. Its programmatic surface is **not** a standalone public REST product - it is a set of global **Apex service classes** (and legacy SOAP APIs) invoked on the Salesforce Platform against Certinia managed-package objects, covering Revenue Management, Billing Central, PSA, Accounting/ERP, Supply Chain, and Services CPQ. Certinia automates revenue recognition to **ASC 606** and **IFRS 15**, subscription billing, project and resource management, and accounting.
+Certinia (formerly FinancialForce) is a Salesforce-native ERP, Professional Services Automation (PSA), and revenue-management suite delivered as managed packages that run inside a customer's Salesforce org. Its programmatic surface is not a standalone public REST product; it is a set of global Apex service classes (and legacy SOAP APIs) - Revenue Management, Billing Central, PSA, Accounting/ERP, Supply Chain, and Services CPQ - invoked on the Salesforce platform against Certinia managed-package objects. Certinia automates revenue recognition to ASC 606 and IFRS 15, subscription billing, project and resource management, and accounting. Access is gated - it requires a provisioned Salesforce org with the relevant Certinia managed package installed and the appropriate permission set or profile assigned. The endpoints documented here are modeled from Certinia's public Apex API developer references; they are not called against a public, unauthenticated HTTP base URL.
 
-> **Access model (honest note):** Certinia's APIs are **gated**. Using them requires (1) a licensed Salesforce org, (2) the relevant Certinia managed package installed and configured, and (3) an assigned permission set or profile. Authentication and transport are provided by the **Salesforce Platform** (OAuth 2.0 / SOAP session), not by a separate Certinia system. There is no self-serve public developer signup and no Certinia-hosted public HTTP base URL. The API entries here are **modeled from Certinia's public Apex developer references** (`endpointsModeled: true`) - they describe real, documented service classes but are not called against a public, unauthenticated endpoint.
+**Areas:** Revenue Recognition · ASC 606 · ERP · Professional Services Automation · PSA · Billing · Accounting · Salesforce · FinancialForce · Finance
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/certinia/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/certinia/refs/heads/main/apis.yml)
+## Certinia on APIs.io
 
-## Tags
+Everything profiled for Certinia is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/certinia/](https://apis.io/providers/certinia/)** — or go straight to one of the APIs or properties below.
 
-- Revenue Recognition
-- ASC 606
-- ERP
-- Professional Services Automation
-- PSA
-- Billing
-- Accounting
-- Salesforce
-- FinancialForce
-- Finance
+### APIs (6)
 
-## Timestamps
+- [Certinia Revenue Management API](https://apis.io/apis/certinia/certinia-revenue-management-api/) — Global Apex service classes for automating revenue recognition to ASC 606 and IFRS 15. RevenueContractService creates and updates revenue contracts,…
+- [Certinia Billing Central API](https://apis.io/apis/certinia/certinia-billing-central-api/) — Global Apex service classes for subscription and usage billing. BillingService, BillingDocumentsService, BillingSchedulesService, and ContractsService…
+- [Certinia Professional Services Automation (PSA) API](https://apis.io/apis/certinia/certinia-psa-api/) — Domain-oriented Apex service classes for Professional Services Automation - projects, resource requests and assignments, milestones, timecards, expenses,…
+- [Certinia Accounting (ERP) API](https://apis.io/apis/certinia/certinia-accounting-api/) — Certinia Accounting Apex API (namespace prefix CODAAPI) for core financials - sales and purchase invoices, credit notes, journals, cash entries, and…
+- [Certinia Supply Chain Management (SCM) API](https://apis.io/apis/certinia/certinia-scm-api/) — Certinia Supply Chain Management Apex API (FFAAPI) for inventory, sales and purchase orders, and fulfillment against SCM managed-package objects. Invoked as…
+- [Certinia Services CPQ API](https://apis.io/apis/certinia/certinia-services-cpq-api/) — Certinia Services CPQ Apex API for configuring, pricing, and quoting services engagements and estimates that feed PSA projects. Invoked as Apex within a…
 
-- **Created:** 2026-07-11
-- **Modified:** 2026-07-11
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Certinia Revenue Management API
+#### Security (2)
 
-Global Apex service classes for automating revenue recognition to **ASC 606** and **IFRS 15**. `RevenueContractService` creates and updates revenue contracts, generates performance obligations, allocates revenue, and produces recognition schedules. `RevenueRecognitionService`, `RevenueScheduleService`, and `RevenueScheduleAutomationService` recognize revenue and cost against schedules, and `ForecastService` supports revenue forecasting. Invoked as Apex within a Salesforce org (class names use a namespace prefix, e.g. `CODAAPI`); endpoints modeled from the public developer reference.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [Revenue Management Apex API Developer Reference](https://help.certinia.com/TechnicalReference/2024.2/RevenueManagement/Apex/GenericAPI.htm)
+- [Certinia Authentication](https://apis.io/security/certinia/certinia-authentication/)
+- [Certinia Domain Security](https://apis.io/security/certinia/certinia-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Revenue Recognition
-- ASC 606
-- IFRS 15
-- Revenue Contracts
-- Deferred Revenue
+Published plans, tiers and prices.
 
-#### Properties
+- [Certinia Plans Pricing](https://apis.io/plans/certinia/certinia-plans-pricing/)
 
-- [Documentation](https://help.certinia.com/TechnicalReference/2024.2/RevenueManagement/Apex/GenericAPI.htm)
-- [API Reference - Creating Revenue Contracts Using the API](https://help.certinia.com/main/2024.1/Content/RevenueManagement/Features/RevenueContracts/CreateRevContractUsingAPI.htm)
+#### Rate limits (1)
 
-### Certinia Billing Central API
+Published request limits.
 
-Global Apex service classes for subscription and usage billing. `BillingService`, `BillingDocumentsService`, `BillingSchedulesService`, and `ContractsService` generate billing documents and schedules, manage contracts, pricing, discounts, products, and tax codes, and drive the bill-to-cash process. Invoked as Apex within a Salesforce org against Billing Central managed-package objects; endpoints modeled from the public developer reference.
+- [Certinia Rate Limits](https://apis.io/rate-limits/certinia/certinia-rate-limits/)
 
-- **Human URL:** [Billing Central Apex API Developer Reference](https://help.certinia.com/ffbc-api/3X/GenericAPI.htm)
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Billing
-- Subscription Billing
-- Invoicing
-- Billing Documents
+- [Certinia Finops](https://apis.io/finops/certinia/certinia-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://help.certinia.com/ffbc-api/3X/GenericAPI.htm)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Certinia Professional Services Automation (PSA) API
-
-Domain-oriented Apex service classes for Professional Services Automation - projects, resource requests and assignments, milestones, timecards, expenses, and billing events. Runs against PSA managed-package objects (namespace prefix `pse`) inside a Salesforce org and supports SOAP development environments; not a generic public REST CRUD layer. Endpoints modeled from the public developer reference.
-
-- **Human URL:** [PSA Apex API Developer Reference](https://help.certinia.com/TechnicalReference/2024.2/ProfessionalServicesAutomation/Apex/GenericAPI.htm)
-
-#### Tags
-
-- Professional Services Automation
-- PSA
-- Projects
-- Resource Management
-- Timecards
-
-#### Properties
-
-- [Documentation](https://help.certinia.com/TechnicalReference/2024.2/ProfessionalServicesAutomation/Apex/GenericAPI.htm)
-- [API Reference (PSA Apex 16X)](https://help.certinia.com/psa-api-apex/16X/GenericAPI.htm)
-
-### Certinia Accounting (ERP) API
-
-Certinia Accounting Apex API (namespace prefix `CODAAPI`) for core financials - sales and purchase invoices, credit notes, journals, cash entries, and general-ledger transactions - against the Accounting managed-package objects. Invoked as Apex within a Salesforce org; endpoints modeled from the public developer reference.
-
-- **Human URL:** [Accounting Apex API Developer Reference](https://help.certinia.com/TechnicalReference/2023.2/Accounting/Apex/GenericAPI.htm)
-
-#### Tags
-
-- Accounting
-- ERP
-- General Ledger
-- Finance
-
-#### Properties
-
-- [Documentation](https://help.certinia.com/TechnicalReference/2023.2/Accounting/Apex/GenericAPI.htm)
-- [API Reference (Accounting Apex 2022.2)](https://help.certinia.com/accounting-api-apex/2022.2/GenericAPI.htm)
-
-### Certinia Supply Chain Management (SCM) API
-
-Certinia Supply Chain Management Apex API (`FFAAPI`) for inventory, sales and purchase orders, and fulfillment against SCM managed-package objects. Invoked as Apex within a Salesforce org; endpoints modeled from the public developer reference.
-
-- **Human URL:** [SCM Apex API Developer Reference](https://help.certinia.com/scmc-api/2022.3/FFAAPI.htm)
-
-#### Tags
-
-- Supply Chain
-- Inventory
-- Orders
-- Procurement
-
-#### Properties
-
-- [Documentation](https://help.certinia.com/scmc-api/2022.3/FFAAPI.htm)
-
-### Certinia Services CPQ API
-
-Certinia Services CPQ Apex API for configuring, pricing, and quoting services engagements and estimates that feed PSA projects. Invoked as Apex within a Salesforce org against Services CPQ managed-package objects; endpoints modeled from the public developer reference.
-
-- **Human URL:** [Services CPQ Apex API Developer Reference](https://help.certinia.com/ServicesCPQApexAPI/February2023/GenericAPI.htm)
-
-#### Tags
-
-- CPQ
-- Quoting
-- Services Estimation
-
-#### Properties
-
-- [Documentation](https://help.certinia.com/ServicesCPQApexAPI/February2023/GenericAPI.htm)
-
-## Common Properties
-
-- [Domain Security](security/certinia-domain-security.yml)
-- [Authentication](authentication/certinia-authentication.yml)
-- [GitHub Organization](https://github.com/certinia)
-- [LinkedIn](https://www.linkedin.com/company/certinia)
 - [Website](https://www.certinia.com/)
 - [Documentation](https://help.certinia.com/)
-- [Plans](plans/certinia-plans-pricing.yml)
-- [Rate Limits](rate-limits/certinia-rate-limits.yml)
-- [Fin Ops](finops/certinia-finops.yml)
+- [Blog](https://www.certinia.com/blog/)
+- [GitHub](https://github.com/certinia)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 13.0** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 7.9 |
+
+**Agent readiness 3.1** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/certinia/](https://apis.io/providers/certinia/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Certinia: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/certinia/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
